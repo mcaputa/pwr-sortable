@@ -2,21 +2,6 @@
     $('.card').on('click', '.card__remove-card-btn', deleteCard);
     $('button').on('click', showForm);
     $('.list').on('click', '.list__remove-list-btn', deleteList);
-    $('.list__cards-container').sortable({
-        connectWith: ".list__cards-container",
-        receive:updateCardPosition
-    });
-
-    function updateCardPosition(event, ui) {
-        var listId = $(this).closest(".list").data("list-id");
-        var cardId = ui.item.find(".card__remove-card-btn").data("card-id");
-
-        $.ajax({
-            method: "POST",
-            url: "/Board/UpdateCardPosition",
-            data: { listId: listId, cardId: cardId }
-        });
-    }
 
     function deleteList(event) {
         event.stopPropagation();

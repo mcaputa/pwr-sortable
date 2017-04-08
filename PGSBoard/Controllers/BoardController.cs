@@ -102,19 +102,5 @@ namespace PGSBoard.Controllers
                 Data = result
             };
         }
-        [HttpPost]
-        public ActionResult UpdateCardPosition(int cardId,int listId)
-        {
-            var updateCardPositionDto = new UpdateCardPositionDto()
-            {
-                ListId = listId, 
-                CardId = cardId
-            };
-
-            _boardsService.UpdateCardPosition(updateCardPositionDto);
-
-            return new HttpStatusCodeResult(HttpStatusCode.OK);
-
-        }
     }
 }
