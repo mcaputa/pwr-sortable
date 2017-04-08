@@ -108,3 +108,6 @@ body {
 .trash {
     cursor: pointer;
 }
+.hide-form {
+    display: none;
+}

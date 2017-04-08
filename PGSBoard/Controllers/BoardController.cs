@@ -1,4 +1,7 @@
-﻿namespace PGSBoard.Controllers
+﻿using System.Net;
+using System.Net.Http;
+
+namespace PGSBoard.Controllers
 {
     using System.Web.Mvc;
 
@@ -82,6 +85,36 @@
             {
                 Data = result
             };
+        }
+
+        //DELETE: Delete list from db and returns if action was successful
+        [HttpDelete]
+        public JsonResult DeleteList(int listId)
+        {
+            var deleteListDto = new DeleteListDto()
+            {
+                ListId = listId
+            };
+
+            var result = _boardsService.DeleteList(deleteListDto);
+            return new JsonResult()
+            {
+                Data = result
+            };
+        }
+        [HttpPost]
+        public ActionResult UpdateCardPosition(int cardId,int listId)
+        {
+            var updateCardPositionDto = new UpdateCardPositionDto()
+            {
+                ListId = listId, 
+                CardId = cardId
+            };
+
+            _boardsService.UpdateCardPosition(updateCardPositionDto);
+
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
+
         }
     }
 }
